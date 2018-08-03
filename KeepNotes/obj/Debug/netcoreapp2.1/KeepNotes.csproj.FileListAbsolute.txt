@@ -1,0 +1,14 @@
+E:\workspace\ASP.net\KeepNotes\KeepNotes\bin\Debug\netcoreapp2.1\KeepNotes.deps.json
+E:\workspace\ASP.net\KeepNotes\KeepNotes\bin\Debug\netcoreapp2.1\KeepNotes.runtimeconfig.json
+E:\workspace\ASP.net\KeepNotes\KeepNotes\bin\Debug\netcoreapp2.1\KeepNotes.runtimeconfig.dev.json
+E:\workspace\ASP.net\KeepNotes\KeepNotes\bin\Debug\netcoreapp2.1\KeepNotes.dll
+E:\workspace\ASP.net\KeepNotes\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.csproj.CoreCompileInputs.cache
+E:\workspace\ASP.net\KeepNotes\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.RazorAssemblyInfo.cache
+E:\workspace\ASP.net\KeepNotes\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.RazorAssemblyInfo.cs
+E:\workspace\ASP.net\KeepNotes\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.AssemblyInfoInputs.cache
+E:\workspace\ASP.net\KeepNotes\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.AssemblyInfo.cs
+E:\workspace\ASP.net\KeepNotes\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.RazorTargetAssemblyInfo.cache
+E:\workspace\ASP.net\KeepNotes\KeepNotes\bin\Debug\netcoreapp2.1\KeepNotes.pdb
+E:\workspace\ASP.net\KeepNotes\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.dll
+E:\workspace\ASP.net\KeepNotes\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.pdb
+E:\workspace\ASP.net\KeepNotes\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.csprojAssemblyReference.cache
