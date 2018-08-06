@@ -12,6 +12,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using KeepNotes.Models;
+using Swashbuckle.AspNetCore.Swagger;
+using System.ComponentModel.Design;
+using KeepNotes.Controllers;
+using KeepNotes.Migrations;
+
 
 namespace KeepNotes
 {
@@ -28,14 +33,20 @@ namespace KeepNotes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+           // services.AddScoped<IHelpService, NotesController>();
             services.AddDbContext<KeepNotesContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("KeepNotesContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -44,6 +55,14 @@ namespace KeepNotes
             {
                 app.UseHsts();
             }
+
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+               // c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();

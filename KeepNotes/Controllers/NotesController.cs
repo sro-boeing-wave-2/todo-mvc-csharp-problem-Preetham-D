@@ -101,6 +101,28 @@ namespace KeepNotes.Controllers
             return Ok(temp);
 
         }
+        [HttpGet("label/{label}")]
+        public IActionResult GetNotesLabel([FromRoute] string label)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            //List < Notes > temp  = new List<Notes>();
+            var notes = GetNotes().Where(x => x.label.Exists(z => z.label == label));
+            //foreach(var x in GetNotes())
+            //{
+            //    foreach(var z in x.label)
+            //    {
+            //        if(z.label == label)
+            //        {
+            //            temp.Add(x);
+            //        }
+            //    }
+            //}
+            if (notes == null) return NotFound();
+            return Ok(notes);
+        }
 
         // PUT: api/Notes/5
         [HttpPut("{id}")]
@@ -115,40 +137,28 @@ namespace KeepNotes.Controllers
             {
                 return BadRequest();
             }
-            //Notes[] temp = new Notes[_context.Notes.Count()];
-            //int i = 0;
-            await _context.Notes.Include(x => x.checklist).Include(x => x.label).ForEachAsync(x =>
-            {
+            //var temp2 = GetNotes().SingleOrDefault(x => x.ID == id);
+            //await _context.Notes.Include(x => x.checklist).Include(x => x.label).ForEachAsync(x =>
+            //{
 
-                if (x.ID == id)
-                {
-                    // temp[i] = x;
-                    x = notes;
-                }
-                //i++;
-            });
+            //    if (x.ID == id)
+            //    {
+            //         x = notes;
+            //        //_context.UpdateRange();
+            //        //x.Title = notes.Title;
+            //        //x.Text = notes.Text;
+            //        //x.PinStat = notes.PinStat;
+            //        //x.label[1] = notes.label[1];
+            //        //x.checklist[1] = notes.checklist[1];
+
+            //    }
+            //});
+            //_context.Entry(notes).State = EntityState.Modified;
+           _context.Notes.Update(notes);
             await _context.SaveChangesAsync();
-            return Ok(notes);
-            //  _context.Entry(notes).State = EntityState.Modified;
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!NotesExists(id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-            //return NoContent();
+            
+            return Ok(_context.Notes.Where(x => x.ID == id));
         }
-
-        // POST: api/Notes
         [HttpPost]
         public async Task<IActionResult> PostNotes([FromBody] Notes notes)
         {
@@ -161,6 +171,24 @@ namespace KeepNotes.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetNotes", new { id = notes.ID }, notes);
+        }
+        [HttpPost("check/{id}")]
+        public async Task<IActionResult> PostCheck ([FromRoute]int id, [FromBody] CheckList item)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _context.Notes.Include(x => x.checklist).Include(x => x.label).ForEachAsync(x =>
+            {
+                if (x.ID == id)
+                {
+                    // temp[i] = x;
+                    x.checklist.Add(item);
+                }
+            });
+            await _context.SaveChangesAsync();
+            return Ok("Added A Checklist");
         }
 
         // DELETE: api/Notes/5
