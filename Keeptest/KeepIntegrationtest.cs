@@ -34,7 +34,7 @@ namespace Keeptest
                 label = new List<Label>() { new Label { label = "number1" }, new Label { label = "number2" } } },new Notes
                 {
                     Title = "Second",
-                    Text = "First sentence",
+                    Text = "Second sentence",
                     PinStat = true,
                     checklist = new List<CheckList>() { new CheckList { list = "hello2" }, new CheckList { list = "brother2" } },
                     label = new List<Label>() { new Label { label = "number3" }, new Label { label = "number4" } }

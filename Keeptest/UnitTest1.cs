@@ -68,7 +68,11 @@ namespace Keeptest
             var resultAsOkObjectResult = result as OkObjectResult;
             //Assert.True(condition: result, OkObjectResult);
             var notes = resultAsOkObjectResult.Value as List<Notes>;
-            Assert.NotNull(notes);
+           // Assert.NotNull(notes);
+           foreach (var x in notes)
+            {
+                Assert.Equal("First", x.Title);
+            }
             // Assert.Equal(notes.Select(x => x.Title == "First").Count == notes.Count);
 
         }
@@ -79,7 +83,11 @@ namespace Keeptest
             var resultAsOkObjectResult = result as OkObjectResult;
             //Assert.True(condition: result, OkObjectResult);
             var notes = resultAsOkObjectResult.Value as List<Notes>;
-            Assert.NotNull(notes);
+            //Assert.NotNull(notes);
+            foreach(var x in notes)
+            {
+                Assert.True(x.PinStat);
+            }
 
         }
         [Fact]
