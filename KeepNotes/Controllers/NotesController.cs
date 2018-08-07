@@ -111,7 +111,7 @@ namespace KeepNotes.Controllers
                 return BadRequest(ModelState);
             }
             //List < Notes > temp  = new List<Notes>();
-            var notes = _context.Notes.Include(x => x.checklist).Include(x=>x.label).Where(x => x.label.Exists(z => z.label == label));
+            var notes = _context.Notes.Include(x => x.checklist).Include(x=>x.label).Where(x => x.label.Exists(z => z.label == label)).ToList();
             //foreach(var x in GetNotes())
             //{
             //    foreach(var z in x.label)

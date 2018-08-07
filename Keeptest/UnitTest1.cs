@@ -88,8 +88,17 @@ namespace Keeptest
             {
                 Assert.True(x.PinStat);
             }
-
         }
+        [Fact]
+        public  void TestGetLabel()
+        {
+            var result =  _controller.GetNotesLabel("number1");
+            var resultAsOkObjectResult = result as OkObjectResult;
+            //Assert.True(condition: result, OkObjectResult);
+            var notes = resultAsOkObjectResult.Value as List<Notes>;
+            Assert.Single(notes);
+        }
+
         [Fact]
         public async void TestPost()
         {
