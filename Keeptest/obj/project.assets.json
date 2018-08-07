@@ -15780,11 +15780,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\workspace\\ASP.net\\KeepNotes\\Keeptest\\Keeptest.csproj",
+      "projectUniqueName": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\Keeptest\\Keeptest.csproj",
       "projectName": "Keeptest",
-      "projectPath": "E:\\workspace\\ASP.net\\KeepNotes\\Keeptest\\Keeptest.csproj",
+      "projectPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\Keeptest\\Keeptest.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "E:\\workspace\\ASP.net\\KeepNotes\\Keeptest\\obj\\",
+      "outputPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\Keeptest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -15803,8 +15803,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "E:\\workspace\\ASP.net\\KeepNotes\\KeepNotes\\KeepNotes.csproj": {
-              "projectPath": "E:\\workspace\\ASP.net\\KeepNotes\\KeepNotes\\KeepNotes.csproj"
+            "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\KeepNotes\\KeepNotes.csproj": {
+              "projectPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\KeepNotes\\KeepNotes.csproj"
             }
           }
         }

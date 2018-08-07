@@ -14669,11 +14669,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\workspace\\ASP.net\\KeepNotes\\KeepNotes\\KeepNotes.csproj",
+      "projectUniqueName": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\KeepNotes\\KeepNotes.csproj",
       "projectName": "KeepNotes",
-      "projectPath": "E:\\workspace\\ASP.net\\KeepNotes\\KeepNotes\\KeepNotes.csproj",
+      "projectPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\KeepNotes\\KeepNotes.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "E:\\workspace\\ASP.net\\KeepNotes\\KeepNotes\\obj\\",
+      "outputPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\KeepNotes\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

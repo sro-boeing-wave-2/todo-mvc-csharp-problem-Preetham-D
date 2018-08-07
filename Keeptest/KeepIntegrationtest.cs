@@ -138,9 +138,9 @@ namespace Keeptest
         [Fact]
         public async Task TestDelete()
         {
-            var Response = await _client.GetAsync("/api/notes/1");
+            var Response = await _client.DeleteAsync("/api/notes/1");
             var reponseString = await Response.Content.ReadAsStringAsync();
-            var responsedata = JsonConvert.DeserializeObject<List<Notes>>(reponseString);
+            var responsedata = JsonConvert.DeserializeObject<Notes>(reponseString);
             Response.EnsureSuccessStatusCode();
 
         }
