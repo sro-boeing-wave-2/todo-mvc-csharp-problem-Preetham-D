@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KeepNotes.Models;
 using System.Data;
+using System.Configuration;
 
 namespace KeepNotes.Controllers
 {
@@ -26,9 +27,10 @@ namespace KeepNotes.Controllers
         public IEnumerable<Notes> GetNotes()
         {
             return _context.Notes.Include(x => x.label).Include(x => x.checklist);
+            //return Ok();
         }
 
-        // GET: api/Notes/5
+        // GET: api/Notes/5 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetNotes([FromRoute] int id)
         {
@@ -73,7 +75,7 @@ namespace KeepNotes.Controllers
                     return NotFound();
                 }
 
-                return Ok(temp);
+                return Ok(temp.ToList());
             
         }
         [HttpGet("pin/{pin}")]
@@ -98,7 +100,7 @@ namespace KeepNotes.Controllers
                 return NotFound();
             }
 
-            return Ok(temp);
+            return Ok(temp.ToList());
 
         }
         [HttpGet("label/{label}")]
@@ -109,7 +111,7 @@ namespace KeepNotes.Controllers
                 return BadRequest(ModelState);
             }
             //List < Notes > temp  = new List<Notes>();
-            var notes = GetNotes().Where(x => x.label.Exists(z => z.label == label));
+            var notes = _context.Notes.Include(x => x.checklist).Include(x=>x.label).Where(x => x.label.Exists(z => z.label == label));
             //foreach(var x in GetNotes())
             //{
             //    foreach(var z in x.label)
@@ -138,26 +140,28 @@ namespace KeepNotes.Controllers
                 return BadRequest();
             }
             //var temp2 = GetNotes().SingleOrDefault(x => x.ID == id);
-            //await _context.Notes.Include(x => x.checklist).Include(x => x.label).ForEachAsync(x =>
-            //{
+            await _context.Notes.Include(x => x.checklist).Include(x => x.label).ForEachAsync(x =>
+            {
 
-            //    if (x.ID == id)
-            //    {
-            //         x = notes;
-            //        //_context.UpdateRange();
-            //        //x.Title = notes.Title;
-            //        //x.Text = notes.Text;
-            //        //x.PinStat = notes.PinStat;
-            //        //x.label[1] = notes.label[1];
-            //        //x.checklist[1] = notes.checklist[1];
+                if (x.ID == id)
+                {
+                   // x = notes;
+                    //_context.UpdateRange();
+                    x.Title = notes.Title;
+                    x.Text = notes.Text;
+                    x.PinStat = notes.PinStat;
+                    _context.Label.RemoveRange(x.label);
+                    _context.Label.AddRange(notes.label);
+                    _context.Check.RemoveRange(x.checklist);
+                    _context.Check.AddRange(notes.checklist);
 
-            //    }
-            //});
+                }
+            });
             //_context.Entry(notes).State = EntityState.Modified;
-           _context.Notes.Update(notes);
+            // _context.Notes.Update(notes);
             await _context.SaveChangesAsync();
-            
-            return Ok(_context.Notes.Where(x => x.ID == id));
+
+            return Ok(_context.Notes.Include(y => y.label).Include(y => y.checklist).First(x => x.ID == notes.ID));
         }
         [HttpPost]
         public async Task<IActionResult> PostNotes([FromBody] Notes notes)

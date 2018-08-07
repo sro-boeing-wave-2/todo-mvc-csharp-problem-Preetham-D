@@ -16,18 +16,21 @@ using Swashbuckle.AspNetCore.Swagger;
 using System.ComponentModel.Design;
 using KeepNotes.Controllers;
 using KeepNotes.Migrations;
+using System.Configuration;
 
 
 namespace KeepNotes
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -37,9 +40,19 @@ namespace KeepNotes
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
-           // services.AddScoped<IHelpService, NotesController>();
-            services.AddDbContext<KeepNotesContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("KeepNotesContext")));
+            if (Environment.IsEnvironment("Testing"))
+            {
+                services.AddDbContext<KeepNotesContext>(options =>
+                    options.UseInMemoryDatabase("TestingDB"));
+            }
+            else
+            {
+                services.AddDbContext<KeepNotesContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("KeppNotesContext")));
+            }
+            // services.AddScoped<IHelpService, NotesController>();
+            //services.AddDbContext<KeepNotesContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("KeepNotesContext")));
 
         }
 
@@ -66,6 +79,7 @@ namespace KeepNotes
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            //app.UseConfiguration();
         }
     }
 }
