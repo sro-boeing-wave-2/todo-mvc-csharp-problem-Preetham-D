@@ -21,7 +21,7 @@ namespace Keeptest
             var optionsBuilder = new DbContextOptionsBuilder<KeepNotesContext>();
             optionsBuilder.UseInMemoryDatabase(Guid.NewGuid().ToString());
             var todocontext = new KeepNotesContext(optionsBuilder.Options);
-              _controller = new NotesController(todocontext);
+            _controller = new NotesController(todocontext);
             createtestdata(todocontext);
         }
 
@@ -43,7 +43,7 @@ namespace Keeptest
         public void TestGet()
         {
             var result = _controller.GetNotes().ToList();
-           Console.Write("{0}"+ '\n' + result[0].ID);
+            Console.Write("{0}" + '\n' + result[0].ID);
             //var objectresult = result as OkObjectResult;
             //var notes = objectresult.Value as List<Notes>;
             Assert.Equal(2, result.Count);
@@ -58,7 +58,7 @@ namespace Keeptest
             var OkObjectResult = result as OkObjectResult;
             //Assert.True(condition: result, OkObjectResult);
             var notes = OkObjectResult.Value as Notes;
-            Assert.Equal(notes.ID,tofindID[0].ID);
+            Assert.Equal(notes.ID, tofindID[0].ID);
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace Keeptest
             //Assert.True(condition: result, OkObjectResult);
             var notes = resultAsOkObjectResult.Value as List<Notes>;
             Assert.NotNull(notes);
-           // Assert.Equal(notes.Select(x => x.Title == "First").Count == notes.Count);
+            // Assert.Equal(notes.Select(x => x.Title == "First").Count == notes.Count);
 
         }
         [Fact]
@@ -97,7 +97,7 @@ namespace Keeptest
             var resultAsOkObjectResult = result as CreatedAtActionResult;
             //Assert.True(condition: result, OkObjectResult);
             var notes = resultAsOkObjectResult.Value as Notes;
-            Assert.Equal(notes,note);
+            Assert.Equal(notes, note);
         }
         [Fact]
         public async void TestPut()
@@ -128,7 +128,7 @@ namespace Keeptest
             var resultAsOkObjectResult = result as OkObjectResult;
             //Assert.True(condition: result, OkObjectResult);
             var notes = resultAsOkObjectResult.Value as Notes;
-            Assert.Equal(notes.ID,tofindID[0].ID);
+            Assert.Equal(notes.ID, tofindID[0].ID);
 
         }
 

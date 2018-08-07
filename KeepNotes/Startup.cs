@@ -48,7 +48,7 @@ namespace KeepNotes
             else
             {
                 services.AddDbContext<KeepNotesContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("KeppNotesContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("KeepNotesContext")));
             }
             // services.AddScoped<IHelpService, NotesController>();
             //services.AddDbContext<KeepNotesContext>(options =>
