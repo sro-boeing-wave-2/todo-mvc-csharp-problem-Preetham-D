@@ -19,17 +19,17 @@ namespace Keeptest
 {
     public class KeepIntegrationtest
     {
-            private HttpClient _client;
+        private HttpClient _client;
         private KeepNotesContext _context;
 
 
-            public KeepIntegrationtest()
-            {
-                var host = new TestServer(new WebHostBuilder()
-                    .UseEnvironment("Testing")
-                    .UseStartup<Startup>());
+        public KeepIntegrationtest()
+        {
+            var host = new TestServer(new WebHostBuilder()
+                .UseEnvironment("Testing")
+                .UseStartup<Startup>());
             _context = host.Host.Services.GetService(typeof(KeepNotesContext)) as KeepNotesContext;
-                _client = host.CreateClient();
+            _client = host.CreateClient();
             List<Notes> note1 = new List<Notes>(){ new Notes { Title = "First", Text = "First sentence", PinStat = true, checklist = new List<CheckList>() { new CheckList { list = "hello" }, new CheckList { list = "brother" } },
                 label = new List<Label>() { new Label { label = "number1" }, new Label { label = "number2" } } },new Notes
                 {
@@ -41,9 +41,6 @@ namespace Keeptest
                 } };
             _context.Notes.AddRange(note1);
             _context.SaveChanges();
-            //_context = host.Host.Services.GetService(typeof(NoteContext)) as NoteContext;
-            //_client = host.CreateClient();
-            //_context.Note.AddRange(TestNoteProper);
         }
         [Fact]
         public async Task TestPost()
@@ -71,29 +68,34 @@ namespace Keeptest
                 };
             var json = JsonConvert.SerializeObject(notes);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+            _context.SaveChanges();
             var Response = await _client.PostAsync("/api/notes", stringContent);
-            var ResponseGet = await _client.GetAsync("/api/notes");
-            ResponseGet.EnsureSuccessStatusCode();
+            var ResponseGet = await _client.GetAsync("/api/notes/3");
+            var reponseString = await ResponseGet.Content.ReadAsStringAsync();
+            var responsedata = JsonConvert.DeserializeObject<Notes>(reponseString);
+            notes.ID = responsedata.ID;
+            Assert.True(notes.Compare(responsedata));
+            //ResponseGet.EnsureSuccessStatusCode();
         }
 
         [Fact]
-            public async Task TestGetAsync()
-            {
-                var Response = await _client.GetAsync("/api/notes");
-                var ResponseBody = await Response.Content.ReadAsStringAsync();
+        public async Task TestGetAsync()
+        {
+            var Response = await _client.GetAsync("/api/notes");
+            var ResponseBody = await Response.Content.ReadAsStringAsync();
             //Console.WriteLine("Body"+ResponseBody.);
             //Assert.Equal(2, ResponseBody.Length);
             Response.EnsureSuccessStatusCode();
-            }
+        }
 
-            [Fact]
-            public async Task TestGetById()
-            {
-                var Response = await _client.GetAsync("/api/notes/99");
-                //Console.WriteLine(await Response.Content.ReadAsStringAsync());
-                //var ResponseBody = await Response.Content.ReadAsStringAsync();
-                Assert.Equal("NotFound", Response.StatusCode.ToString());
-            }
+        [Fact]
+        public async Task TestGetById()
+        {
+            var Response = await _client.GetAsync("/api/notes/99");
+            //Console.WriteLine(await Response.Content.ReadAsStringAsync());
+            //var ResponseBody = await Response.Content.ReadAsStringAsync();
+            Assert.Equal("NotFound", Response.StatusCode.ToString());
+        }
         [Fact]
         public async Task TestGetByTitle()
         {
@@ -120,6 +122,7 @@ namespace Keeptest
                         }
                    },
                    label = new List<Label>()
+
                    {
                         new Label()
                         {
@@ -129,7 +132,8 @@ namespace Keeptest
                };
             var json = JsonConvert.SerializeObject(notes);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-            var Response = await _client.PutAsync("/api/Notes/1",stringContent);
+            var Response = await _client.PutAsync("/api/Notes/1", stringContent);
+            _context.SaveChanges();
             var responseString = await Response.Content.ReadAsStringAsync();
             var responsedata = JsonConvert.DeserializeObject<Notes>(responseString);
             Response.EnsureSuccessStatusCode();

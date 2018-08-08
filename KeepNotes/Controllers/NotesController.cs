@@ -152,8 +152,8 @@ namespace KeepNotes.Controllers
                     x.PinStat = notes.PinStat;
                     _context.Label.RemoveRange(x.label);
                     _context.Label.AddRange(notes.label);
-                    _context.Check.RemoveRange(x.checklist);
-                    _context.Check.AddRange(notes.checklist);
+                    _context.CheckList.RemoveRange(x.checklist);
+                    _context.CheckList.AddRange(notes.checklist);
 
                 }
             });
