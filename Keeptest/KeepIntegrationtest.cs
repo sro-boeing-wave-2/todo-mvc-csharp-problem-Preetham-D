@@ -30,8 +30,14 @@ namespace Keeptest
                 .UseStartup<Startup>());
             _context = host.Host.Services.GetService(typeof(KeepNotesContext)) as KeepNotesContext;
             _client = host.CreateClient();
-            List<Notes> note1 = new List<Notes>(){ new Notes { Title = "First", Text = "First sentence", PinStat = true, checklist = new List<CheckList>() { new CheckList { list = "hello" }, new CheckList { list = "brother" } },
-                label = new List<Label>() { new Label { label = "number1" }, new Label { label = "number2" } } },new Notes
+            List<Notes> note1 = new List<Notes>(){ new Notes
+            { Title = "First",
+                Text = "First sentence",
+                PinStat = true,
+                checklist = new List<CheckList>() { new CheckList { list = "hello" }, new CheckList { list = "brother" } },
+                label = new List<Label>() { new Label { label = "number1" }, new Label { label = "number2" } }
+            },
+                new Notes
                 {
                     Title = "Second",
                     Text = "Second sentence",
@@ -102,7 +108,11 @@ namespace Keeptest
             var Response = await _client.GetAsync("/api/notes/title/First");
             var reponseString = await Response.Content.ReadAsStringAsync();
             var responsedata = JsonConvert.DeserializeObject<List<Notes>>(reponseString);
-            Response.EnsureSuccessStatusCode();
+            //Response.EnsureSuccessStatusCode();
+            foreach(var x in responsedata)
+            {
+                Assert.Equal("First", x.Title);
+            }
         }
         [Fact]
         public async Task TestPut()
@@ -136,7 +146,8 @@ namespace Keeptest
             _context.SaveChanges();
             var responseString = await Response.Content.ReadAsStringAsync();
             var responsedata = JsonConvert.DeserializeObject<Notes>(responseString);
-            Response.EnsureSuccessStatusCode();
+            Assert.True(notes.Compare(responsedata));
+            //Response.EnsureSuccessStatusCode();
 
         }
         [Fact]

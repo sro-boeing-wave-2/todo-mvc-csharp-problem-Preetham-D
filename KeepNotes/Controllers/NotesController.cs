@@ -57,17 +57,17 @@ namespace KeepNotes.Controllers
             }
 
             // var notes = await _context.Notes.Include(y => y.label).Include(y => y.checklist).FirstOrDefaultAsync(x => x.Title == title);
-            Notes[] temp = new Notes[_context.Notes.Count()];
-            int i = 0;
+            List<Notes> temp = new List<Notes>();
+            //int i = 0;
             await _context.Notes.Include(x => x.checklist).Include(x => x.label).ForEachAsync(x =>
             {
             
                 if (x.Title == title)
                 {
-                    temp[i] = x;
+                    temp.Add(x);
 
                 }
-                i++;
+                //i++;
             });
             //foreach (var u in temp) {
                 if ( temp == null)
