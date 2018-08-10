@@ -75,7 +75,7 @@ namespace KeepNotes.Controllers
                     return NotFound();
                 }
 
-                return Ok(temp.ToList());
+                return Ok(temp);
             
         }
         [HttpGet("pin/{pin}")]

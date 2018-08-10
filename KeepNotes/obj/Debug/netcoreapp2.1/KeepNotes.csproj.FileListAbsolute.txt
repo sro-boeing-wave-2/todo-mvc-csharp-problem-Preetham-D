@@ -25,4 +25,5 @@ E:\workspace\ASP.net\todo-mvc-csharp-problem-Preetham-D\KeepNotes\obj\Debug\netc
 E:\workspace\ASP.net\todo-mvc-csharp-problem-Preetham-D\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.RazorTargetAssemblyInfo.cache
 E:\workspace\ASP.net\todo-mvc-csharp-problem-Preetham-D\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.dll
 E:\workspace\ASP.net\todo-mvc-csharp-problem-Preetham-D\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.pdb
+E:\workspace\ASP.net\todo-mvc-csharp-problem-Preetham-D\KeepNotes\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 E:\workspace\ASP.net\todo-mvc-csharp-problem-Preetham-D\KeepNotes\obj\Debug\netcoreapp2.1\KeepNotes.csprojAssemblyReference.cache
