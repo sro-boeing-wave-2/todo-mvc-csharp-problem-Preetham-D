@@ -15781,11 +15781,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\keeptest\\Keeptest.csproj",
+      "projectUniqueName": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\Keeptest\\Keeptest.csproj",
       "projectName": "Keeptest",
-      "projectPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\keeptest\\Keeptest.csproj",
+      "projectPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\Keeptest\\Keeptest.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\keeptest\\obj\\",
+      "outputPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\Keeptest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -15832,7 +15832,6 @@
             "version": "[15.8.0, )"
           },
           "Microsoft.NETCore.App": {
-            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
