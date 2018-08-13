@@ -35,6 +35,7 @@ namespace KeepNotes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = @"Server=db;Database=KeepnotesContext;User=sa;Password=YourStrongP@ssword;";
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(c =>
             {
@@ -48,7 +49,7 @@ namespace KeepNotes
             else
             {
                 services.AddDbContext<KeepNotesContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("KeepNotesContext")));
+                    options.UseSqlServer(connection));
             }
             // services.AddScoped<IHelpService, NotesController>();
             //services.AddDbContext<KeepNotesContext>(options =>
@@ -76,7 +77,8 @@ namespace KeepNotes
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                // c.RoutePrefix = string.Empty;
             });
-
+            //var context = app.ApplicationServices.GetService<KeepNotesContext>();
+            //context.Database.Migrate();
             app.UseHttpsRedirection();
             app.UseMvc();
             //app.UseConfiguration();

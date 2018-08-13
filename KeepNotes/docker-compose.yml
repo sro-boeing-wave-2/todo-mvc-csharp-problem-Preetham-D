@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  web:
+      build: .
+      #image: keepnotes
+      ports:
+          - "8000:80"
+      depends_on:
+          - db
+
+  db:
+    image: "microsoft/mssql-server-linux"
+    environment:
+      SA_PASSWORD: "YourStrongP@ssword"
+      ACCEPT_EULA: "Y"

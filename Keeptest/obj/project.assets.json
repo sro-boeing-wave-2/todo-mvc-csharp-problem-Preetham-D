@@ -6154,6 +6154,7 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.1.2",
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.1.1",
           "Microsoft.NETCore.App": "2.1.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.1",
           "Swashbuckle.AspNetCore": "3.0.0",
@@ -15780,11 +15781,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\Keeptest\\Keeptest.csproj",
+      "projectUniqueName": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\keeptest\\Keeptest.csproj",
       "projectName": "Keeptest",
-      "projectPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\Keeptest\\Keeptest.csproj",
+      "projectPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\keeptest\\Keeptest.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\Keeptest\\obj\\",
+      "outputPath": "E:\\workspace\\ASP.net\\todo-mvc-csharp-problem-Preetham-D\\keeptest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -15831,6 +15832,7 @@
             "version": "[15.8.0, )"
           },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true

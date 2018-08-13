@@ -1,8 +1,16 @@
-version: '3.4'
+version: '3'
 
 services:
-  keepnotes:
-    image: ${DOCKER_REGISTRY}keepnotes
-    build:
-      context: .
-      dockerfile: KeepNotes/Dockerfile
+  web:
+      build: .
+      image: keepnotes
+      ports:
+          - "8000:80"
+      depends_on:
+          - db
+
+  db:
+    image: "microsoft/mssql-server-linux"
+    environment:
+      SA_PASSWORD: "YourStrongP@ssword"
+      ACCEPT_EULA: "Y"
